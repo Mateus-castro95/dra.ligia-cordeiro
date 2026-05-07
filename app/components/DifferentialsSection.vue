@@ -1,7 +1,12 @@
 <template>
   <section id="diferenciais" class="diff" ref="sectionRef">
-    <!-- Background decorativo -->
-    <div class="diff__bg-text" aria-hidden="true">EXCELÊNCIA</div>
+    <!-- Background decorativo (Marquee) -->
+    <div class="diff__marquee" aria-hidden="true">
+      <div class="diff__marquee-track">
+        <span>EXCELÊNCIA · EXCELÊNCIA · EXCELÊNCIA · EXCELÊNCIA ·&nbsp;</span>
+        <span>EXCELÊNCIA · EXCELÊNCIA · EXCELÊNCIA · EXCELÊNCIA ·&nbsp;</span>
+      </div>
+    </div>
 
     <div class="diff__inner">
       <div class="diff__left" :class="{ 'is-visible': visible }">
@@ -77,19 +82,34 @@ onUnmounted(() => observer?.disconnect())
   overflow: hidden;
 }
 
-.diff__bg-text {
+.diff__marquee {
   position: absolute;
   bottom: -2%;
-  right: -2%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.diff__marquee-track {
+  display: inline-flex;
+  animation: marquee 60s linear infinite;
+}
+
+.diff__marquee-track span {
   font-family: 'Cormorant SC', serif;
   font-size: clamp(6rem, 14vw, 16rem);
   font-weight: 700;
   color: rgba(255,255,255,0.025);
   letter-spacing: 0.08em;
-  pointer-events: none;
-  user-select: none;
   line-height: 1;
-  white-space: nowrap;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .diff__inner {
@@ -206,14 +226,11 @@ onUnmounted(() => observer?.disconnect())
   .diff__inner { grid-template-columns: 1fr; gap: 3.5rem; }
   .diff__left { position: static; }
   .diff__cta { align-self: center; }
-  .diff__bg-text {
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
+  .diff__marquee {
     bottom: 0;
-    font-size: clamp(2.5rem, 12vw, 7rem);
-    letter-spacing: 0.08em;
-    white-space: nowrap;
+  }
+  .diff__marquee-track span {
+    font-size: clamp(4rem, 15vw, 8rem);
   }
 }
 </style>
