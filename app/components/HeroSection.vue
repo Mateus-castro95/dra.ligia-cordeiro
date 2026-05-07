@@ -46,17 +46,15 @@
       </div>
     </div>
 
-    <div class="hero__scroll" :class="{ 'is-visible': visible }" aria-hidden="true">
-      <span class="hero__scroll-line desktop-only"></span>
-      <span class="hero__scroll-text desktop-only">Rolar</span>
-      <LucideChevronDown class="hero__scroll-icon mobile-only" :size="24" stroke-width="1.5" />
+    <div class="hero__scroll desktop-only" :class="{ 'is-visible': visible }" aria-hidden="true">
+      <span class="hero__scroll-line"></span>
+      <span class="hero__scroll-text">Rolar</span>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { ChevronDown as LucideChevronDown } from 'lucide-vue-next'
 const visible = ref(false)
 const bgRef = ref<HTMLElement | null>(null)
 
@@ -220,17 +218,11 @@ onUnmounted(() => window.removeEventListener('scroll', handleParallax))
   font-family: 'Jost', sans-serif; font-size: 0.58rem;
   letter-spacing: 0.3em; text-transform: uppercase; color: rgba(196,164,86,0.65);
 }
-.hero__scroll-icon {
-  display: none;
-  color: rgba(196,164,86,0.8);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
 @media (max-width: 640px) {
   .hero__ornament { display: none; }
   .hero__content { padding-top: 7rem; }
   .hero__actions { flex-direction: column; width: 100%; }
   .hero__btn { justify-content: center; }
   .desktop-only { display: none !important; }
-  .mobile-only { display: block !important; }
 }
 </style>
