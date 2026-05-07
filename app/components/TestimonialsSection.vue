@@ -90,18 +90,15 @@ const testimonials = [
 function next() { active.value = (active.value + 1) % testimonials.length }
 function prev() { active.value = (active.value - 1 + testimonials.length) % testimonials.length }
 
-let timer: ReturnType<typeof setInterval> | null = null
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
-  timer = setInterval(next, 5000)
   observer = new IntersectionObserver((entries) => {
     if (entries[0]?.isIntersecting) { visible.value = true; observer?.disconnect() }
   }, { threshold: 0.1 })
   if (sectionRef.value) observer.observe(sectionRef.value)
 })
 onUnmounted(() => {
-  if (timer) clearInterval(timer)
   observer?.disconnect()
 })
 </script>

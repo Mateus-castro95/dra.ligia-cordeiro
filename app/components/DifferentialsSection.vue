@@ -206,5 +206,14 @@ onUnmounted(() => observer?.disconnect())
   .diff__inner { grid-template-columns: 1fr; gap: 3.5rem; }
   .diff__left { position: static; }
   .diff__cta { align-self: center; }
+  .diff__bg-text {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    font-size: clamp(2.5rem, 12vw, 7rem);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
 }
 </style>

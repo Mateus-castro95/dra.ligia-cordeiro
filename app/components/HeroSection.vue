@@ -220,6 +220,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleParallax))
 }
 @media (max-width: 640px) {
   .hero__ornament { display: none; }
+  .hero__content { padding-top: 7rem; }
   .hero__actions { flex-direction: column; width: 100%; }
   .hero__btn { justify-content: center; }
 }
